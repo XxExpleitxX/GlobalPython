@@ -13,7 +13,6 @@ class Sanador():
         if detector.detectar_mutantes():
             print("Mutacion detectada, sanando... ")
             matriz_sana = self._generar_adn_sano(len(matriz), len(matriz[0]))
-            print(f'matriz sana {matriz_sana}')
             return matriz_sana
         print("No se detectaron mutaciones.")
         return matriz
@@ -21,7 +20,6 @@ class Sanador():
     def _generar_adn_sano(self, filas, columnas):
         bases = ["A", "T", "C", "G"]
         nvo_adn = [[random.choice(bases) for _ in range(columnas)] for _ in range(filas)]
-        print(f'nuevo adn {nvo_adn}')
         detector_a = Detector("sanador detector", nvo_adn)
         if detector_a.detectar_mutantes():
             return self._generar_adn_sano(filas,columnas)

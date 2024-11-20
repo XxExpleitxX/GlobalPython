@@ -17,4 +17,4 @@ class Radiacion(Mutador):
             return self.matriz_adn
         except IndexError:
             print("Error: La posicion o direccion de la mutacion no es válida. ADN NO MUTADO.")
-            return None
+            return self.matriz_adn

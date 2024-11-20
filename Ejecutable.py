@@ -38,6 +38,8 @@ def ejecutar():
         elif option_a == '4':
             dna = ["AGATCA", "GATTCA", "CAACAT", "GAGCTA", "ATTGCG", "CTGTTC"] #Caso no mutante
         elif option_a == '5':
+            print("La matriz resultante de este programa fue: ")
+            mostrar_matriz(dna)
             print("\nGracias por usar nuestro detector de mutantes.")
             break
         else:
