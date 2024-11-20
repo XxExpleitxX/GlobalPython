@@ -2,19 +2,28 @@ import random
 
 from Detector import Detector
 
-class Sanador:
-    def __init__(self, nombre, potencia_sanacion):
+class Sanador():
+    def __init__(self, nombre):
         self.nombre = nombre
-        self.potencia_sanacion = potencia_sanacion
+        self.experiencia = random.randint(20, 100)
     
-    def sanar_mutantes(self, matriz_adn):
-        Detector = Detector("Sanador detector", 100)
-        if Detector.detector_mutantes(matriz_adn):
+    def sanar_mutantes(self, matriz):
+        detector = Detector("Sanador detector", matriz)
+        matriz_sana = []
+        if detector.detectar_mutantes():
             print("Mutacion detectada, sanando... ")
-            return self._generar_adn_sano(len(matriz_adn), len(matriz_adn[0]))
+            matriz_sana = self._generar_adn_sano(len(matriz), len(matriz[0]))
+            print(f'matriz sana {matriz_sana}')
+            return matriz_sana
         print("No se detectaron mutaciones.")
-        return matriz_adn
+        return matriz
     
     def _generar_adn_sano(self, filas, columnas):
         bases = ["A", "T", "C", "G"]
-        return [[random.choice(bases) for _ in range(columnas)] for _ in range(filas)]
+        nvo_adn = [[random.choice(bases) for _ in range(columnas)] for _ in range(filas)]
+        print(f'nuevo adn {nvo_adn}')
+        detector_a = Detector("sanador detector", nvo_adn)
+        if detector_a.detectar_mutantes():
+            return self._generar_adn_sano(filas,columnas)
+        else:
+            return nvo_adn

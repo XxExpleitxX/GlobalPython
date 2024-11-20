@@ -1,15 +1,17 @@
 from Mutador import Mutador
 class Virus(Mutador):
-    def __init__(self, base_nitrogenada, nombre_mutacion, nivel_mutacion, tipo_virus):
-        super().__init__(base_nitrogenada, nombre_mutacion, nivel_mutacion)
-        self.tipo_virus = tipo_virus
+    def __init__(self, base_nitrogenada, matriz_adn):
+        super().__init__(base_nitrogenada.upper(), matriz_adn)
 
-    def crear_mutante(self, matriz_adn, posicion_inicial):
+    def crear_mutante(self, posicion_inicial):
+        nva_matriz = self.matriz_adn
         try:
             fila, columna = posicion_inicial
+            fila = int(fila)
+            columna = int(columna)
             for i in range(4):
-                matriz_adn[fila + i][columna + i] = self.base_nitrogenada
-            return matriz_adn
+                nva_matriz[fila + i][columna + i] = self.base_nitrogenada
+            return nva_matriz
         except IndexError:
-            print("Error: la posicion de la mutacion no es válida")
-            return None
+            print("Error: La posición inicial de la mutación no es válida. ADN NO MUTADO.")
+            return nva_matriz
