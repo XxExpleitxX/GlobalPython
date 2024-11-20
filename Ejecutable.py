@@ -21,6 +21,8 @@ def validar(mensaje, incluido):
 
 def ejecutar():
 
+    dna = [] #Inicializacion de la matriz que se utilizará en todo el programa
+
     while(True):
         # Menú principal del programa
         option_a = input(
@@ -31,7 +33,6 @@ def ejecutar():
             '4: Usar una matriz de prueba humana\n'
             '5: Salir del programa\n'
             )
-        dna = []
 
         if option_a == '1': #Genera matriz manual
             while (len(dna)!=6):
@@ -73,9 +74,9 @@ def ejecutar():
 
             if opcion == "1":  #Detectar mutaciones en la matriz
                 
-                detector = Detector("Detector principal", dna)
-                print(f'\n{detector.nombre} trabajando...')
-                if detector.detectar_mutantes():
+                detector = Detector("Detector principal")
+                print(f'\n{detector.nombre} trabajando con una potencia de {detector.potencia_deteccion}...')
+                if detector.detectar_mutantes(dna):
                     print("\nMutación detectada en la matriz de ADN.")
                 else:
                     print("\nNo se detectaron mutaciones.")
